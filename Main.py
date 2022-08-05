@@ -20,8 +20,12 @@ weekend = ( "saturday", "sunday")
 
 def SpecialDayLoop():
     print("SpecialDayLoop")
-    time.sleep(1)
+    time.sleep(60)
 
+def DrillsDatesLoop():
+    print("DrillsDatesLoop")
+    time.sleep(60)
+    
 def TimeLoop():
     while True:
             #Grabs real Time
@@ -38,7 +42,7 @@ def TimeLoop():
 
             for x in drillsDates:
                 if (todaysdate) == x["date"]:
-                    print("bell")
+                    DrillsDatesLoop()
             for x in excludeDates:
                 if (todaysdate) == x["date"]:
                     print("bell")        
