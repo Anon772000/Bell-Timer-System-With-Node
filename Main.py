@@ -26,6 +26,14 @@ def DrillsDatesLoop():
     print("DrillsDatesLoop")
     time.sleep(60)
     
+def ExcludeDatesLoop():
+    print("ExcludeDatesLoop")
+    time.sleep(60)
+
+def TermDatesLoop():
+    print("TermDatesLoop")
+    time.sleep(60)
+
 def TimeLoop():
     while True:
             #Grabs real Time
@@ -35,37 +43,49 @@ def TimeLoop():
             globalSettings = json.load(open("/var/www/html/assets/json/global.json"))
             if globalSettings['EVAC']['EVAC'] == True:
                 TimeLoop()
-            specialDay = json.load(open("/var/www/html/assets/json/specialDay.json"))
-            for x in specialDay:
-                if (todaysdate) == x["date"]:
-                    SpecialDayLoop()
-
-            for x in drillsDates:
-                if (todaysdate) == x["date"]:
-                    DrillsDatesLoop()
-            for x in excludeDates:
-                if (todaysdate) == x["date"]:
-                    print("bell")        
-                        if int(todaysdate.strftime("%M")) == 0:
-                            print('sleeping for 60 seconds')
-                            time.sleep(60)
-                            break
-                        else:
-                            messageArray =[]
-                            for x in sounds:
-                                z = 1
-                                messageArray.insert(int(z),messages[x]['name'])
-                                z+=1
-                            choice = random.choice(messageArray)
-                            logging.warning('| Annoucement Rang '+ choice +', spacing is '+ str(frequency))
-                            print(choice)
-                            running  = threading.Thread(target=play, args=(str(choice),))
-                            logging.warning("Starting Play")
-                            running.start()
-                            time.sleep(60)
-                    
- 
-                system('clear')
+            else:
+                # Drills
+                try:
+                    json.load(open("/var/www/html/assets/json/drills.json"))
+                except:
+                    logging.warning('| Error Loading drills.json Skipping..')
+                else:
+                    drillsDates =json.load(open("/var/www/html/assets/json/drills.json"))
+                    for x in drillsDates:
+                        if (todaysdate) == x["date"]:
+                            DrillsDatesLoop()
+                # Special Days
+                try:
+                    json.load(open("/var/www/html/assets/json/specialDay.json"))
+                except:
+                    logging.warning('| Error Loading specialDay.json Skipping..')
+                else:
+                    specialDay =json.load(open("/var/www/html/assets/json/specialDay.json"))
+                    for x in specialDay:
+                        if (todaysdate) == x["date"]:
+                            SpecialDayLoop()
+                # Excluded Days
+                try:
+                    json.load(open("/var/www/html/assets/json/exclude.json"))
+                except:
+                    logging.warning('| Error Loading exclude.json Skipping..')
+                else:
+                    excludeDates =json.load(open("/var/www/html/assets/json/exclude.json"))
+                    for x in excludeDates: 
+                        if (todaysdate) == x["date"]:
+                            ExcludeDatesLoop()
+                 # Excluded Days
+                try:
+                    json.load(open("/var/www/html/assets/json/termDates.json"))
+                except:
+                    logging.warning('| Error Loading termDates.json Skipping..')
+                else:
+                    termDates =json.load(open("/var/www/html/assets/json/termDates.json"))
+                    for x in termDates: 
+                        if (todaysdate) == x["date"]:
+                            TermDatesLoop()
+            system('clear')
+            
 def play(id):
     data = json.load(open('/var/www/html/assets/json/messages.json'))
     for r in data:
