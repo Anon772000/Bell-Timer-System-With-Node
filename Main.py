@@ -18,6 +18,9 @@ everyday = ("monday", "tuesday", "wednesday","thursday", "friday", "saturday", "
 workDays = ("monday", "tuesday", "wednesday","thursday", "friday")
 weekend = ( "saturday", "sunday")
 
+def SpecialDayLoop():
+    print("SpecialDayLoop")
+    time.sleep(1)
 
 def TimeLoop():
     while True:
@@ -31,7 +34,7 @@ def TimeLoop():
             specialDay = json.load(open("/var/www/html/assets/json/specialDay.json"))
             for x in specialDay:
                 if (todaysdate) == x["date"]:
-                    print("bell")
+                    SpecialDayLoop()
 
             for x in drillsDates:
                 if (todaysdate) == x["date"]:
