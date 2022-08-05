@@ -26,7 +26,7 @@ def TimeLoop():
             #Creates current hour and min
             currentTIme = [todaysdate.strftime("%H"), todaysdate.strftime("%M")]
             globalSettings = json.load(open("/var/www/html/assets/json/global.json"))
-            if globalSettings['EVAC'][EVAC] == True:
+            if globalSettings['EVAC']['EVAC'] == True:
                 TimeLoop()
             specialDay = json.load(open("/var/www/html/assets/json/specialDay.json"))
             for x in specialDay:
