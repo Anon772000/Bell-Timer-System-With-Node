@@ -19,20 +19,57 @@ workDays = ("monday", "tuesday", "wednesday","thursday", "friday")
 weekend = ( "saturday", "sunday")
 
 def SpecialDayLoop():
-    print("SpecialDayLoop")
-    time.sleep(60)
+    todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
+    thetime = [todaysdate.strftime("%H"), todaysdate.strftime("%M")]
+    drillsDates =json.load(open("/var/www/html/assets/json/drills.json"))
+    for x in drillsDates:
+        if (todaysdate) == x["date"]:
+            y = drillsDates[x]['time'].split(":")
+            if(y == thetime):
+                DrillType = drillsDates[x]['type']
+                Bellsys = threading.Thread(target=Tone, args=(DrillType,))
+                Bellsys.start()
+                Bellsys.join() 
+                time.sleep(60)
+                continue
 
 def DrillsDatesLoop():
-    print("DrillsDatesLoop")
-    time.sleep(60)
+    todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
+    thetime = [todaysdate.strftime("%H"), todaysdate.strftime("%M")]
+    drillsDates =json.load(open("/var/www/html/assets/json/drills.json"))
+    for x in drillsDates:
+        if (todaysdate) == x["date"]:
+            y = drillsDates[x]['time'].split(":")
+            if(y == thetime):
+                DrillType = drillsDates[x]['type']
+                Bellsys = threading.Thread(target=Tone, args=(DrillType,))
+                Bellsys.start()
+                Bellsys.join() 
+                time.sleep(60)
+                continue
     
 def ExcludeDatesLoop():
-    print("ExcludeDatesLoop")
-    time.sleep(60)
+    todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
+    excludeDates =json.load(open("/var/www/html/assets/json/exclude.json"))
+    for x in excludeDates:
+        if (todaysdate) == x["date"]:
+            time.sleep(60)
+            continue
 
 def TermDatesLoop():
-    print("TermDatesLoop")
-    time.sleep(60)
+    todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
+    thetime = [todaysdate.strftime("%H"), todaysdate.strftime("%M")]
+    drillsDates =json.load(open("/var/www/html/assets/json/drills.json"))
+    for x in drillsDates:
+        if (todaysdate) == x["date"]:
+            y = drillsDates[x]['time'].split(":")
+            if(y == thetime):
+                DrillType = drillsDates[x]['type']
+                Bellsys = threading.Thread(target=Tone, args=(DrillType,))
+                Bellsys.start()
+                Bellsys.join() 
+                time.sleep(60)
+                continue
 
 def TimeLoop():
     while True:
@@ -85,7 +122,7 @@ def TimeLoop():
                         if (todaysdate) == x["date"]:
                             TermDatesLoop()
             system('clear')
-            
+
 def play(id):
     data = json.load(open('/var/www/html/assets/json/messages.json'))
     for r in data:
@@ -96,6 +133,9 @@ def play(id):
         else:
             logging.warning('| ERROR: message did not play')
             return
+
+def Tone(type):
+    print(type)
 
 if __name__ == "__main__":
     logging.warning("Creating Threads")
