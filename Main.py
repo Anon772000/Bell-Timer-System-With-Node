@@ -56,20 +56,83 @@ def ExcludeDatesLoop():
             time.sleep(60)
             continue
 
-def TermDatesLoop():
+def TermDatesLoop(id):
     todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
     thetime = [todaysdate.strftime("%H"), todaysdate.strftime("%M")]
-    drillsDates =json.load(open("/var/www/html/assets/json/drills.json"))
-    for x in drillsDates:
-        if (todaysdate) == x["date"]:
-            y = drillsDates[x]['time'].split(":")
-            if(y == thetime):
-                DrillType = drillsDates[x]['type']
-                Bellsys = threading.Thread(target=Tone, args=(DrillType,))
-                Bellsys.start()
-                Bellsys.join() 
-                time.sleep(60)
-                continue
+    try:
+        json.load(open('/var/www/html/Templates.json'))
+    except ValueError:
+            logging.warning('| Error Loading Templates.json Skipping..')
+            logging.warning('| WARNING BELLS WILL NOT RING')
+    else:
+            Template = json.load(open('/var/www/html/Templates.json'))
+            length = len(Template[id]['bells'])
+            q = 0
+            while q < length:
+                now = dt.datetime.now()
+                daynow = now.weekday()
+                daytoday = weekDays[daynow]
+                thetime = [now.strftime("%H"), now.strftime("%M")]
+                x = Template[id]['bells'][q]['time'].split(":")
+                x = [z.encode() for z in x]
+                x = [z.decode('UTF-8') for z in x]
+                if thetime == x:
+                    for DayOfTheWeek in weekDays:
+                        try:
+                            Template[id]['bells'][q][DayOfTheWeek]
+                        except KeyError:
+                            pass
+                        else:
+                            if daytoday == DayOfTheWeek:
+                                try:
+                                    belltype = Template[id]['bells'][q]['belltype']
+                                except KeyError:
+                                    logging.warning('| Bell Tryed to ring But Belltype Not Selected')
+                                else:
+                                    belltype = Template[id]['bells'][q]['belltype']
+                                    bell = threading.Thread(target=play_bell, args=(belltype,))
+                                    bell.start()
+                                    time.sleep(60)
+                                    q = q + 1
+                                    return
+                                    
+                    for DayOfTheWeek in week:
+                        try:
+                            Template[id]['bells'][q]['weekdays']
+                        except KeyError:
+                            pass
+                        else:
+                            if daytoday == DayOfTheWeek:
+                                try:
+                                    belltype = Template[id]['bells'][q]['belltype']
+                                except KeyError:
+                                    logging.warning('| Bell Tryed to ring But Belltype Not Selected')
+                                else:
+                                    belltype = Template[id]['bells'][q]['belltype']
+                                    bell = threading.Thread(target=play_bell, args=(belltype,))
+                                    bell.start()
+                                    time.sleep(60)
+                                    q = q + 1
+                                    return
+                    for DayOfTheWeek in weekend:
+                        try:
+                            Template[id]['bells'][q]['weekends']
+                        except KeyError:
+                            pass
+                        else:
+                            if daytoday == DayOfTheWeek:
+                                try:
+                                    belltype = Template[id]['bells'][q]['belltype']
+                                except KeyError:
+                                    logging.warning('| Bell Tryed to ring But Belltype Not Selected')
+                                else:
+                                    belltype = Template[id]['bells'][q]['belltype']
+                                    bell = threading.Thread(target=play_bell, args=(belltype,))
+                                    bell.start()
+                                    time.sleep(60)
+                                    q = q + 1
+                                    return
+                q = q + 1
 
 def TimeLoop():
     while True:
@@ -111,7 +174,7 @@ def TimeLoop():
                     for x in excludeDates: 
                         if (todaysdate) == x["date"]:
                             ExcludeDatesLoop()
-                 # Excluded Days
+                 # Does today fall within a term
                 try:
                     json.load(open("/var/www/html/assets/json/termDates.json"))
                 except:
@@ -119,8 +182,9 @@ def TimeLoop():
                 else:
                     termDates =json.load(open("/var/www/html/assets/json/termDates.json"))
                     for x in termDates: 
-                        if (todaysdate) == x["date"]:
-                            TermDatesLoop()
+                        if(termDates[x]['start'] <= todaysdate <= termDates[x]['finish']):
+                            Template = termDates[x]['Template']
+                            TermDatesLoop(Template)
             system('clear')
 
 def play(id):
