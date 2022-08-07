@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+<meta https-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+  
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <!-- CSS Files -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/css/harrison.css" rel="stylesheet" />
+ 
+
+
+ <?php
+
+session_start([
+  'cookie_lifetime' => 600,
+]);
+
+if($_SESSION['pass'] == '605605'){
+  
+}else{
+  header('location: login.php');
+}
+
+
+?>
