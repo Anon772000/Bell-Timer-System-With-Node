@@ -1,6 +1,9 @@
 {
     "TimeZone": {
         "Zone": "Australia/Sydney"
+    },
+    "EVAC": {
+        "EVAC": false
     }
     
 }
