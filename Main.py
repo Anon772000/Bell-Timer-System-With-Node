@@ -15,13 +15,13 @@ webRoot = ""
 globalSettings = json.load(open(webRoot + "html/assets/json/global.json"))
 TIMEZONE = globalSettings['TimeZone']['zone']
 everyday = ("monday", "tuesday", "wednesday","thursday", "friday", "saturday", "sunday")
-workDays = ("monday", "tuesday", "wednesday","thursday", "friday")
+week = ("monday", "tuesday", "wednesday","thursday", "friday")
 weekend = ( "saturday", "sunday")
 
 def SpecialDayLoop():
     todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
     thetime = [todaysdate.strftime("%H"), todaysdate.strftime("%M")]
-    drillsDates =json.load(open("/var/www/html/assets/json/drills.json"))
+    drillsDates =json.load(open(webRoot + "html/assets/json/drills.json"))
     for x in drillsDates:
         if (todaysdate) == x["date"]:
             y = drillsDates[x]['time'].split(":")
@@ -36,7 +36,7 @@ def SpecialDayLoop():
 def DrillsDatesLoop():
     todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
     thetime = [todaysdate.strftime("%H"), todaysdate.strftime("%M")]
-    drillsDates =json.load(open("/var/www/html/assets/json/drills.json"))
+    drillsDates =json.load(open(webRoot + "html/assets/json/drills.json"))
     for x in drillsDates:
         if (todaysdate) == x["date"]:
             y = drillsDates[x]['time'].split(":")
@@ -50,34 +50,35 @@ def DrillsDatesLoop():
     
 def ExcludeDatesLoop():
     todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
-    excludeDates =json.load(open("/var/www/html/assets/json/exclude.json"))
+    excludeDates =json.load(open(webRoot + "html/assets/json/exclude.json"))
     for x in excludeDates:
         if (todaysdate) == x["date"]:
             time.sleep(60)
             continue
 
 def TermDatesLoop(id):
+    TIMEZONE = globalSettings['TimeZone']['zone']
     todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
     thetime = [todaysdate.strftime("%H"), todaysdate.strftime("%M")]
     try:
-        json.load(open('/var/www/html/Templates.json'))
+        json.load(open(webRoot + 'html/Templates.json'))
     except ValueError:
             logging.warning('| Error Loading Templates.json Skipping..')
             logging.warning('| WARNING BELLS WILL NOT RING')
     else:
-            Template = json.load(open('/var/www/html/Templates.json'))
+            Template = json.load(open(webRoot + 'html/Templates.json'))
             length = len(Template[id]['bells'])
             q = 0
             while q < length:
                 now = dt.datetime.now()
                 daynow = now.weekday()
-                daytoday = weekDays[daynow]
+                daytoday = week[daynow]
                 thetime = [now.strftime("%H"), now.strftime("%M")]
                 x = Template[id]['bells'][q]['time'].split(":")
                 x = [z.encode() for z in x]
                 x = [z.decode('UTF-8') for z in x]
                 if thetime == x:
-                    for DayOfTheWeek in weekDays:
+                    for DayOfTheWeek in everyday:
                         try:
                             Template[id]['bells'][q][DayOfTheWeek]
                         except KeyError:
@@ -90,7 +91,7 @@ def TermDatesLoop(id):
                                     logging.warning('| Bell Tryed to ring But Belltype Not Selected')
                                 else:
                                     belltype = Template[id]['bells'][q]['belltype']
-                                    bell = threading.Thread(target=play_bell, args=(belltype,))
+                                    bell = threading.Thread(target=play, args=(belltype,))
                                     bell.start()
                                     time.sleep(60)
                                     q = q + 1
@@ -109,7 +110,7 @@ def TermDatesLoop(id):
                                     logging.warning('| Bell Tryed to ring But Belltype Not Selected')
                                 else:
                                     belltype = Template[id]['bells'][q]['belltype']
-                                    bell = threading.Thread(target=play_bell, args=(belltype,))
+                                    bell = threading.Thread(target=play, args=(belltype,))
                                     bell.start()
                                     time.sleep(60)
                                     q = q + 1
@@ -127,7 +128,7 @@ def TermDatesLoop(id):
                                     logging.warning('| Bell Tryed to ring But Belltype Not Selected')
                                 else:
                                     belltype = Template[id]['bells'][q]['belltype']
-                                    bell = threading.Thread(target=play_bell, args=(belltype,))
+                                    bell = threading.Thread(target=play, args=(belltype,))
                                     bell.start()
                                     time.sleep(60)
                                     q = q + 1
@@ -140,47 +141,47 @@ def TimeLoop():
             todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
             #Creates current hour and min
             currentTIme = [todaysdate.strftime("%H"), todaysdate.strftime("%M")]
-            globalSettings = json.load(open("/var/www/html/assets/json/global.json"))
+            globalSettings = json.load(open(webRoot + "html/assets/json/global.json"))
             if globalSettings['EVAC']['EVAC'] == True:
                 TimeLoop()
             else:
                 # Drills
                 try:
-                    json.load(open("/var/www/html/assets/json/drills.json"))
+                    json.load(open(webRoot + "html/assets/json/drills.json"))
                 except:
                     logging.warning('| Error Loading drills.json Skipping..')
                 else:
-                    drillsDates =json.load(open("/var/www/html/assets/json/drills.json"))
+                    drillsDates =json.load(open(webRoot + "html/assets/json/drills.json"))
                     for x in drillsDates:
                         if (todaysdate) == x["date"]:
                             DrillsDatesLoop()
                 # Special Days
                 try:
-                    json.load(open("/var/www/html/assets/json/specialDay.json"))
+                    json.load(open(webRoot + "html/assets/json/specialDay.json"))
                 except:
                     logging.warning('| Error Loading specialDay.json Skipping..')
                 else:
-                    specialDay =json.load(open("/var/www/html/assets/json/specialDay.json"))
+                    specialDay =json.load(open(webRoot + "html/assets/json/specialDay.json"))
                     for x in specialDay:
                         if (todaysdate) == x["date"]:
                             SpecialDayLoop()
                 # Excluded Days
                 try:
-                    json.load(open("/var/www/html/assets/json/exclude.json"))
+                    json.load(open(webRoot + "html/assets/json/exclude.json"))
                 except:
                     logging.warning('| Error Loading exclude.json Skipping..')
                 else:
-                    excludeDates =json.load(open("/var/www/html/assets/json/exclude.json"))
+                    excludeDates =json.load(open(webRoot + "html/assets/json/exclude.json"))
                     for x in excludeDates: 
                         if (todaysdate) == x["date"]:
                             ExcludeDatesLoop()
                  # Does today fall within a term
                 try:
-                    json.load(open("/var/www/html/assets/json/termDates.json"))
+                    json.load(open(webRoot + "html/assets/json/termDates.json"))
                 except:
                     logging.warning('| Error Loading termDates.json Skipping..')
                 else:
-                    termDates =json.load(open("/var/www/html/assets/json/termDates.json"))
+                    termDates =json.load(open(webRoot + "html/assets/json/termDates.json"))
                     for x in termDates: 
                         if(termDates[x]['start'] <= todaysdate <= termDates[x]['finish']):
                             Template = termDates[x]['Template']
@@ -188,10 +189,10 @@ def TimeLoop():
             system('clear')
 
 def play(id):
-    data = json.load(open('/var/www/html/assets/json/messages.json'))
+    data = json.load(open(webRoot + 'html/assets/json/songs.json'))
     for r in data:
         if id == id:
-            subprocess.call(['ffplay -autoexit -nodisp  /var/www/html/assets/messages/'+id], shell=True)
+            subprocess.call(['ffplay -autoexit -nodisp '+ webRoot +'html/assets/tones/'+id], shell=True)
             logging.warning('| Message played,-' + data[r]['name'])
             return
         else:
