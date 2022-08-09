@@ -4,6 +4,12 @@
     },
     "EVAC": {
         "EVAC": false
+    },
+    "Zones":{
+        "One" : true,
+        "Two" : true,
+        "Three" : false,
+        "Four" : false,
     }
     
 }

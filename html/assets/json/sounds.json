@@ -1,1 +1,18 @@
-{"5f4c4cce6adf2":{"name":"Song One","dir":"\/var\/www\/html\/Bennelong Brass - Sumer Is Icumen In.mp3"},"5f4c4cce6df2":{"name":"Song Two","dir":"\/var\/www\/html\/Bennelong Brass - Sumer Is Icumen In.mp3"},"5f4c4e6adf2":{"name":"Song Three","dir":"\/var\/www\/html\/Bennelong Brass - Sumer Is Icumen In.mp3"},"5fc4e6adf2":{"name":"Song Four","dir":"\/var\/www\/html\/Bennelong Brass - Sumer Is Icumen In.mp3"}}
+{
+    "5f4c4cce6adf2": {
+        "name": "Song One",
+        "dir": "html\/assets\/tones\/Buzzer.wav"
+    },
+    "5f4c4cce6df2": {
+        "name": "Song Two",
+        "dir": "html\/assets\/tones\/Buzzer.wav"
+    },
+    "5f4c4e6adf2": {
+        "name": "Song Three",
+        "dir": "html\/assets\/tones\/Buzzer.wav"
+    },
+    "5fc4e6adf2": {
+        "name": "Song Four",
+        "dir": "/Users/admin/Documents/Bell System/Bell-Timer-System/html/assets/tones/Buzzer.wav"
+    }
+}

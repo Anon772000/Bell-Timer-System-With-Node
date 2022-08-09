@@ -60,6 +60,7 @@ def TermDatesLoop(id):
     TIMEZONE = globalSettings['TimeZone']['Zone']
     todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
     thetime = [todaysdate.strftime("%H"), todaysdate.strftime("%M")]
+    nextBell = ['23','59']
     try:
         json.load(open(webRoot + 'html/assets/json/Templates.json'))
     except:
@@ -135,7 +136,12 @@ def TermDatesLoop(id):
                                     time.sleep(60)
                                     q = q + 1
                                     return
-                q = q + 1
+                else:
+                    if thetime < x < nextBell:
+                        nextBell = x               
+                    q = q + 1
+            if nextBell != ['23','59']:
+                print("next bell is at " + nextBell[0] +":"+ nextBell[1])        
 
 def TimeLoop():
     while True:
@@ -202,16 +208,41 @@ def TimeLoop():
             
 
 def play(id):
-    data = json.load(open(webRoot + 'html/assets/json/songs.json'))
-    for r in data:
-        if id == id:
-            subprocess.call(['ffplay -autoexit -nodisp '+ webRoot +'html/assets/tones/'+id], shell=True)
-            logging.warning('| Message played,-' + data[r]['name'])
-            return
-        else:
-            logging.warning('| ERROR: message did not play')
-            return
-
+    logging.warning('| Error Loading termDates.json Skipping..')
+    try:
+        data = json.load(open(webRoot + 'html/assets/json/sounds.json'))
+    except:
+        logging.warning('| Error Loading termDates.json Skipping..')
+        print('| Error Loading termDates.json Skipping..')
+    else:
+        data = json.load(open(webRoot + 'html/assets/json/sounds.json'))
+        if data[id]['zone'] == "ALL":
+            subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'"'], shell=True) 
+            time.sleep(60)
+        elif data[id]['zone'] == "1-2":
+            if globalSettings["Zones"]["One"] & globalSettings["Zones"]["Two"]== True :
+                subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'"'], shell=True) 
+        elif data[id]['zone'] == "3-4":
+            if globalSettings["Zones"]["Three"] & globalSettings["Zones"]["Four"]== True :
+                subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'"'], shell=True) 
+        elif data[id]['zone'] == "1":
+            if globalSettings["Zones"]["One"] == True:
+                subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'" -af "pan=stereo|c0=c0"'], shell=True)
+                time.sleep(60)
+        elif data[id]['zone'] == "2":
+            if globalSettings["Zones"]["Two"] == True:
+                subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'" -af "pan=stereo|c1=c1"'], shell=True)
+                time.sleep(60)
+        elif data[id]['zone'] == "3":
+            if globalSettings["Zones"]["One"] == True:
+                subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'" -af "pan=stereo|c0=c0"'], shell=True)
+                time.sleep(60)
+        elif data[id]['zone'] == "4":
+            if globalSettings["Zones"]["One"] == True:
+                subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'" -af "pan=stereo|c1=c1"'], shell=True)
+                time.sleep(60)
+        
+        return
 def Tone(type):
     print(type)
 
