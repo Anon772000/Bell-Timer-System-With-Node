@@ -147,6 +147,25 @@ $arr1 = json_decode(file_get_contents('sounds.json'), true);
     </td>
 
 </tr>
+<tr>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="zone">Zone</label>
+  </div>
+  <select class="custom-select" id="zone">
+    <option value="ALL" selected>All</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+    <option value="4">Four</option>
+    <option value="1-2">One & Two</option>
+    <option value="2-3">Two & Three</option>
+    <option value="3-4">Three & Four</option>
+    <option value="1-4">Three & Four</option>
+  </select>
+</div>
+
+</tr>
 
 
 </table>
