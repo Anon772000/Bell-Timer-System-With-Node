@@ -8,28 +8,32 @@
                 "name": "Teacher on Duty",
                 "time": "08:20",
                 "weekdays": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
                 "name": "Period 1 Warning",
                 "time": "08:50",
                 "weekdays": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
                 "name": "Period 1",
                 "time": "09:00",
                 "weekdays": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
                 "name": "Recess",
                 "time": "10:25",
                 "weekdays": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
@@ -37,14 +41,16 @@
                 "name": "Period 2",
                 "time": "10:45",
                 "weekdays": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
                 "name": "Lunch (Sport)",
                 "time": "12:05",
                 "wednesday": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
@@ -54,7 +60,8 @@
                 "tuesday": "on",
                 "thursday": "on",
                 "friday": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
@@ -68,7 +75,8 @@
                 "name": "Sport",
                 "time": "12:45",
                 "wednesday": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
@@ -89,14 +97,16 @@
                 "tuesday": "on",
                 "thursday": "on",
                 "friday": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
                 "name": "Sport 2",
                 "time": "14:00",
                 "wednesday": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
@@ -106,28 +116,32 @@
                 "tuesday": "on",
                 "thursday": "on",
                 "friday": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
                 "name": "End of Day",
                 "time": "14:45",
                 "weekdays": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
                 "name": "End of Day",
                 "time": "15:10",
                 "weekdays": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
                 "name": "Teacher Meeting",
-                "time": "15:30",
-                "thursday": "on",
-                "belltype": "5f4c4e6adf2"
+                "time": "16:56",
+                "weekdays": "on",
+                "belltype": "5fc4e6adf2",
+                "zone": "2"
             }
         ]
     },
@@ -140,7 +154,8 @@
                 "name": "Teacher on Duty",
                 "time": "08:40",
                 "weekdays": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "5f962f14a574f",
@@ -156,7 +171,8 @@
                 "name": "Period 1",
                 "time": "09:10",
                 "weekdays": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "5f962f14a574f",
@@ -164,7 +180,8 @@
                 "name": "Recess",
                 "time": "10:35",
                 "weekdays": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "5f962f14a574f",
@@ -175,7 +192,8 @@
                 "wednesday": "on",
                 "thursday": "on",
                 "friday": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "5f962f14a574f",
@@ -183,7 +201,8 @@
                 "name": "Sport",
                 "time": "11:00",
                 "tuesday": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "5f962f14a574f",
@@ -194,7 +213,8 @@
                 "wednesday": "on",
                 "thursday": "on",
                 "friday": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "5f962f14a574f",
@@ -226,7 +246,8 @@
                 "wednesday": "on",
                 "thursday": "on",
                 "friday": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "5f962f14a574f",
@@ -238,7 +259,8 @@
                 "wednesday": "on",
                 "thursday": "on",
                 "friday": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "5f962f14a574f",
@@ -246,7 +268,17 @@
                 "name": "End of Day",
                 "time": "15:30",
                 "weekdays": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
+            },
+            {
+                "id": "5f962f14a574f",
+                "bellid": "13",
+                "name": "End of Day",
+                "time": "16:30",
+                "weekdays": "on",
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             }
         ]
     },
@@ -259,7 +291,8 @@
                 "name": "Teacher on Duty",
                 "time": "08:20",
                 "weekdays": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
@@ -273,14 +306,16 @@
                 "name": "Period 1",
                 "time": "09:00",
                 "weekdays": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
                 "name": "Recess",
                 "time": "10:25",
                 "weekdays": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
@@ -288,14 +323,16 @@
                 "name": "Period 2",
                 "time": "10:45",
                 "weekdays": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
                 "name": "Lunch (Sport)",
                 "time": "12:05",
                 "wednesday": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
@@ -305,7 +342,8 @@
                 "tuesday": "on",
                 "thursday": "on",
                 "friday": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
@@ -319,7 +357,8 @@
                 "name": "Sport",
                 "time": "12:45",
                 "wednesday": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
@@ -340,14 +379,16 @@
                 "tuesday": "on",
                 "thursday": "on",
                 "friday": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
                 "name": "Sport 2",
                 "time": "14:00",
                 "wednesday": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
@@ -357,14 +398,16 @@
                 "tuesday": "on",
                 "thursday": "on",
                 "friday": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",
                 "name": "End of Day",
                 "time": "15:10",
                 "weekdays": "on",
-                "belltype": "5fc4e6adf2"
+                "belltype": "5fc4e6adf2",
+                "zone": 1
             },
             {
                 "id": "",

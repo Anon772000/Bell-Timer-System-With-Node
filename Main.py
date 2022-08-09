@@ -94,7 +94,7 @@ def TermDatesLoop(id):
                                     logging.warning('| Bell Tryed to ring But Belltype Not Selected')
                                 else:
                                     belltype = Template[id]['bells'][q]['belltype']
-                                    bell = threading.Thread(target=play, args=(belltype,))
+                                    bell = threading.Thread(target=play, args=(belltype,Template[id]['bells'][q]['zone']))
                                     bell.start()
                                     time.sleep(60)
                                     q = q + 1
@@ -113,9 +113,9 @@ def TermDatesLoop(id):
                                     logging.warning('| Bell Tryed to ring But Belltype Not Selected')
                                 else:
                                     belltype = Template[id]['bells'][q]['belltype']
-                                    bell = threading.Thread(target=play, args=(belltype,))
+                                    bell = threading.Thread(target=play, args=(belltype,Template[id]['bells'][q]['zone']))
                                     bell.start()
-                                    time.sleep(60)
+                                    time.sleep(60)                                   
                                     q = q + 1
                                     return
                     for DayOfTheWeek in weekend:
@@ -131,9 +131,9 @@ def TermDatesLoop(id):
                                     logging.warning('| Bell Tryed to ring But Belltype Not Selected')
                                 else:
                                     belltype = Template[id]['bells'][q]['belltype']
-                                    bell = threading.Thread(target=play, args=(belltype,))
+                                    bell = threading.Thread(target=play, args=(belltype,Template[id]['bells'][q]['zone']))
                                     bell.start()
-                                    time.sleep(60)
+                                    time.sleep(60)                                   
                                     q = q + 1
                                     return
                 else:
@@ -207,8 +207,9 @@ def TimeLoop():
             
             
 
-def play(id):
-    logging.warning('| Error Loading termDates.json Skipping..')
+def play(id,zone):
+    print("Ringing Bell")
+    logging.warning('| Ringing Bell: '+id)
     try:
         data = json.load(open(webRoot + 'html/assets/json/sounds.json'))
     except:
@@ -216,33 +217,34 @@ def play(id):
         print('| Error Loading termDates.json Skipping..')
     else:
         data = json.load(open(webRoot + 'html/assets/json/sounds.json'))
-        if data[id]['zone'] == "ALL":
+        if zone == "ALL":
             subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'"'], shell=True) 
             time.sleep(60)
-        elif data[id]['zone'] == "1-2":
+        elif zone == "1-2":
             if globalSettings["Zones"]["One"] & globalSettings["Zones"]["Two"]== True :
                 subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'"'], shell=True) 
-        elif data[id]['zone'] == "3-4":
+                time.sleep(60)
+        elif zone == "3-4":
             if globalSettings["Zones"]["Three"] & globalSettings["Zones"]["Four"]== True :
-                subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'"'], shell=True) 
-        elif data[id]['zone'] == "1":
+                subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'"'], shell=True)
+                time.sleep(60)
+        elif zone == "1":
             if globalSettings["Zones"]["One"] == True:
                 subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'" -af "pan=stereo|c0=c0"'], shell=True)
                 time.sleep(60)
-        elif data[id]['zone'] == "2":
+        elif zone == "2":
             if globalSettings["Zones"]["Two"] == True:
                 subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'" -af "pan=stereo|c1=c1"'], shell=True)
                 time.sleep(60)
-        elif data[id]['zone'] == "3":
+        elif zone == "3":
             if globalSettings["Zones"]["One"] == True:
                 subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'" -af "pan=stereo|c0=c0"'], shell=True)
                 time.sleep(60)
-        elif data[id]['zone'] == "4":
+        elif zone == "4":
             if globalSettings["Zones"]["One"] == True:
                 subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'" -af "pan=stereo|c1=c1"'], shell=True)
                 time.sleep(60)
         
-        return
 def Tone(type):
     print(type)
 

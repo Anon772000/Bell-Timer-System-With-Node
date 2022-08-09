@@ -9,7 +9,7 @@
         "One" : true,
         "Two" : true,
         "Three" : false,
-        "Four" : false,
+        "Four" : false
     }
     
 }
