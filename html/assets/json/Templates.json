@@ -47,10 +47,10 @@
             {
                 "id": "",
                 "name": "Lunch (Sport)",
-                "time": "12:05",
-                "wednesday": "on",
+                "time": "11:51",
+                "weekdays": "on",
                 "belltype": "5fc4e6adf2",
-                "zone": 1
+                "zone": "1"
             },
             {
                 "id": "",
@@ -81,12 +81,13 @@
             {
                 "id": "",
                 "name": "Lunch End Warning",
-                "time": "12:55",
+                "time": "12:54",
                 "monday": "on",
                 "tuesday": "on",
                 "thursday": "on",
                 "friday": "on",
-                "belltype": "5f4c4cce6adf2"
+                "belltype": "5f4c4cce6adf2",
+                "zone":"2"
             },
             {
                 "id": "",

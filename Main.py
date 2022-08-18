@@ -94,7 +94,7 @@ def TermDatesLoop(id):
                                     logging.warning('| Bell Tryed to ring But Belltype Not Selected')
                                 else:
                                     belltype = Template[id]['bells'][q]['belltype']
-                                    bell = threading.Thread(target=play, args=(belltype,Template[id]['bells'][q]['zone']))
+                                    bell = threading.Thread(target=play, args=(belltype,(Template[id]['bells'][q]['zone'])))
                                     bell.start()
                                     time.sleep(60)
                                     q = q + 1
@@ -113,7 +113,7 @@ def TermDatesLoop(id):
                                     logging.warning('| Bell Tryed to ring But Belltype Not Selected')
                                 else:
                                     belltype = Template[id]['bells'][q]['belltype']
-                                    bell = threading.Thread(target=play, args=(belltype,Template[id]['bells'][q]['zone']))
+                                    bell = threading.Thread(target=play, args=(belltype,(Template[id]['bells'][q]['zone'])))
                                     bell.start()
                                     time.sleep(60)                                   
                                     q = q + 1
@@ -131,7 +131,7 @@ def TermDatesLoop(id):
                                     logging.warning('| Bell Tryed to ring But Belltype Not Selected')
                                 else:
                                     belltype = Template[id]['bells'][q]['belltype']
-                                    bell = threading.Thread(target=play, args=(belltype,Template[id]['bells'][q]['zone']))
+                                    bell = threading.Thread(target=play, args=(belltype,(Template[id]['bells'][q]['zone'])))
                                     bell.start()
                                     time.sleep(60)                                   
                                     q = q + 1
