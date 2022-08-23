@@ -2,7 +2,7 @@
 include "assets/inc/header.inc.php";
 date_default_timezone_set('Australia/Sydney');
 $time =  date("H:i");
-$arr1 = json_decode(file_get_contents('drills.json'), true);
+$arr1 = json_decode(file_get_contents('assets/json/drills.json'), true);
 
 $id = $_GET['id'];
 

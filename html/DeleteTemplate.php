@@ -7,7 +7,7 @@ $id = $_GET['id'];
 if(isset($_GET['error'])){
 $error = $_GET['error'];
 }
-$arr1 = json_decode(file_get_contents('Templates.json'), true);
+$arr1 = json_decode(file_get_contents('assets/json/Templates.json'), true);
 
 
 

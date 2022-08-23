@@ -6,7 +6,7 @@ $time =  date("H:i");
 $id = $_GET['id'];
 $bellid = $_GET['bellid'];
 
-$arr1 = json_decode(file_get_contents('Templates.json'), true);
+$arr1 = json_decode(file_get_contents('assets/json/Templates.json'), true);
 $mon = "";
 $tue = "";
 $wed = "";

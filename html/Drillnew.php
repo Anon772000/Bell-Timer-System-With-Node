@@ -1,7 +1,7 @@
 <?php
 
 $arry2 = $_GET;
-$arr1 = json_decode(file_get_contents('drills.json'), true);
+$arr1 = json_decode(file_get_contents('assets/json/drills.json'), true);
 if(isset($_GET['id'])){
 $arr1[$_GET['id']] = $arry2;
 
@@ -14,6 +14,6 @@ $arr1[$uuid] = $arry2;
 }
 
 
-if(file_put_contents("drills.json",json_encode($arr1))){
+if(file_put_contents("assets/json/drills.json",json_encode($arr1))){
   header("location: drills.php");
 };

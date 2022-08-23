@@ -7,8 +7,8 @@ if($_GET['id'] == null){
 }else{
 	$id = $_GET['id'];
 }
-$arr2 = json_decode(file_get_contents('Templates.json'), true);
-$arr1 = json_decode(file_get_contents('Templates.json'), true);
+$arr2 = json_decode(file_get_contents('assets/json/Templates.json'), true);
+$arr1 = json_decode(file_get_contents('assets/json/Templates.json'), true);
 if(isset($arr1)){
 $name = $arr1[$id]['name'];
 }else{

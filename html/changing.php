@@ -2,7 +2,7 @@
 $arry2 = $_GET;
 $id = $_GET['id'];
 $bellid = $_GET['bellid'];
-$arr1 = json_decode(file_get_contents('Templates.json'), true);
+$arr1 = json_decode(file_get_contents('assets/json/Templates.json'), true);
 
 $arr1[$id]['bells'][$bellid] = $arry2;
 function cmp($a, $b){
@@ -19,6 +19,6 @@ usort($arr1[$id]['bells'], "cmp");
 $arr1[$id]['bells'] = str_replace(array('[',']'), '',$arr1[$id]['bells']);
 
 
-file_put_contents("Templates.json",json_encode($arr1));
+file_put_contents("assets/json/Templates.json",json_encode($arr1));
 header("location: EditTemplate.php?id=".$id);
  

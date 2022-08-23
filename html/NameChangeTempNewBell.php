@@ -6,13 +6,13 @@ $name = $_GET['name'];
 
 
 
-$arr1 = json_decode(file_get_contents('Templates.json'), true);
+$arr1 = json_decode(file_get_contents('assets/json/Templates.json'), true);
 
 $arr1[$id]['name'] = $name;
 
 
 
 
-file_put_contents("Templates.json",json_encode($arr1));
+file_put_contents("assets/json/Templates.json",json_encode($arr1));
 header("location: newbell.php?id=".$id);
 

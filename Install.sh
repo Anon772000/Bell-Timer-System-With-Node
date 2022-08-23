@@ -12,7 +12,7 @@ sudo rm -rf /etc/systemd/system/frpc.service
 sudo rm -rf /etc/frp/frpc.ini
 sudo rm -rf /usr/bin/frpc
 echo "---Moving New Files"
-sudo mv core.service /etc/systemd/system
+sudo mv Bell-Timer-System.service /etc/systemd/system
 echo "---Starting Systemctl"
 sudo systemctl daemon-reload
 sudo systemctl enable Bell-Timer-System.service

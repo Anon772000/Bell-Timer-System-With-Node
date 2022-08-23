@@ -3,11 +3,11 @@ include "assets/inc/header.inc.php";
 date_default_timezone_set('Australia/Sydney');
 $time =  date("H:i");
 $usd  = uniqid();
-$arr1 = json_decode(file_get_contents('terms.json'), true);
+$arr1 = json_decode(file_get_contents('assets/json/terms.json'), true);
 
-$arr2 = json_decode(file_get_contents('special.json'), true);
+$arr2 = json_decode(file_get_contents('assets/json/special.json'), true);
 
-$arr3 = json_decode(file_get_contents('exclude.json'), true);
+$arr3 = json_decode(file_get_contents('assets/json/exclude.json'), true);
 ?>
 </head>
 <body>

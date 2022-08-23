@@ -5,7 +5,7 @@ $time =  date("H:i");
 
 $id = $_GET['bellid'];
 $temp = $_GET['id'];
-$arr1 = json_decode(file_get_contents('Templates.json'), true);
+$arr1 = json_decode(file_get_contents('assets/json/Templates.json'), true);
 
 
 
