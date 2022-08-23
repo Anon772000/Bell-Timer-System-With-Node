@@ -4,6 +4,6 @@ After=multi-user.target
 [Service]
 Type=simple
 Restart=always
-ExecStart=/usr/bin/python3 /etc/Bell-Timer-System/core.py
+ExecStart=/usr/bin/python3 /etc/Bell-Timer-System/Main.py
 [Install]
 WantedBy=multi-user.target
