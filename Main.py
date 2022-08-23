@@ -11,7 +11,7 @@ import pytz
 logging.basicConfig(filename='BellTimerSystem.log', format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 logging.warning('| System started Logging Online')
 # Global Varibales
-webRoot = ""
+webRoot = "/var/www/"
 globalSettings = json.load(open(webRoot + "html/assets/json/global.json"))
 TIMEZONE = globalSettings['TimeZone']['Zone']
 everyday = ("monday", "tuesday", "wednesday","thursday", "friday", "saturday", "sunday")
