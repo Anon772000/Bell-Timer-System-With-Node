@@ -21,6 +21,7 @@ $weekends = "";
 
 $name = $arr1[$id]['bells'][$bellid]['name'];
 $time = $arr1[$id]['bells'][$bellid]['time'];
+$zone = $arr1[$id]['bells'][$bellid]['zone'];
 if (isset($arr1[$id]['bells'][$bellid]['monday'])){
   $mon = "checked";
 }
@@ -193,10 +194,27 @@ echo("<option selected value ='".$selectkey."'>Default Bell</option>");
     </select>
     </div>
     </td>
+    <td>
+<div class="input-group ">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="zone">Zone</label>
+  </div>
+  <select class="custom-select" id="zone" name="zone">
+    <option value="<?=$zone?> " selected><?=$zone?> </option>
+    <option value="ALL">All</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="1-2">1 & 2</option>
+    <option value="2-3">2 & 3</option>
+    <option value="3-4">3 & 4</option>
+    <option value="1-4">3 & 4</option>
+  </select>
+</div>
 
+</td>
 </tr>
-
-
 
 </table>
 <div class="col-md-12 mr-auto ml-auto text-center"><br><br>

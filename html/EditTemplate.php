@@ -113,7 +113,7 @@ foreach ($arr1[$id]['bells'] as $key => $value){
     <td class='text-center'>
     <div class='input-group '>
     <div class='input-group-prepend'>
-    <label class='input-group-text' for='inputGroupSelect01'>Day(s)</label>
+    <label class='input-group-text' for='inputGroupSelect01'>Zone(s)</label>
     </div>
     <select class='custom-select' id='inputGroupSelect01' disabled>
 
