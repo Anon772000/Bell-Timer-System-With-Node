@@ -20,3 +20,4 @@ sudo systemctl start Bell-Timer-System.service
 echo "---Moving Web files"
 sudo rm -rf /var/www/html
 sudo mv /etc/Bell-Timer-System/html /var/www/
+sudo chown -R www-data /var/www/

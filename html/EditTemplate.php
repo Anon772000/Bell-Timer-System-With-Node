@@ -110,6 +110,17 @@ foreach ($arr1[$id]['bells'] as $key => $value){
     </select>
     </div>
     </td>
+    <td class='text-center'>
+    <div class='input-group '>
+    <div class='input-group-prepend'>
+    <label class='input-group-text' for='inputGroupSelect01'>Day(s)</label>
+    </div>
+    <select class='custom-select' id='inputGroupSelect01' disabled>
+
+    <option selected value='0'>".$value['zone']."</option>
+    </select>
+    </div>
+    </td>
     
     <td class='text-center'><a type='button' href='change.php?bellid=".$key."&id=".$id."' class='btn btn-success'>Change</a></td>
     <td class='text-center'><a type='button' href='delete.php?bellid=".$key."&id=".$id."' class='btn btn-danger'>X</a></td>
