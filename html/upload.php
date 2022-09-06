@@ -1,5 +1,5 @@
 <?php
-$target_dir = "/";
+$target_dir = "/assets/tones/";
 $target_file = $target_dir.basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -31,6 +31,7 @@ if ($uploadOk == 0) {
     $arr1 = json_decode(file_get_contents('sounds.json'), true);
     $id = uniqid();
     $arr1[$id] = $arry2;
+    exec("sh ../Transform.sh "+$target_file+" "+$_POST['name']+".m4a");
     file_put_contents("sounds.json",json_encode($arr1));
     header("location: settings.php");
   } else {
