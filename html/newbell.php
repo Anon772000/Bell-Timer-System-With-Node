@@ -153,7 +153,7 @@ $arr1 = json_decode(file_get_contents('assets/json/sounds.json'), true);
     <label class="input-group-text" for="zone">Zone</label>
   </div>
   <select class="custom-select" id="zone" name="zone">
-    <option value="ALL" selected>All</option>3
+    <option value="ALL" selected>All</option>
     <option value="1">One</option>
     <option value="2">Two</option>
     <option value="3">Three</option>
