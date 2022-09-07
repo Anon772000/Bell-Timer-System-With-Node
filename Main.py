@@ -11,7 +11,7 @@ import pytz
 logging.basicConfig(filename='BellTimerSystem.log', format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 logging.warning('| System started Logging Online')
 # Global Varibales
-webRoot = "/var/www/"
+webRoot = ""
 globalSettings = json.load(open(webRoot + "html/assets/json/global.json"))
 TIMEZONE = globalSettings['TimeZone']['Zone']
 everyday = ("monday", "tuesday", "wednesday","thursday", "friday", "saturday", "sunday")
@@ -198,11 +198,11 @@ def TimeLoop():
                     print('| Error Loading termDates.json Skipping..')
                 else:
                     termDates = json.load(open(webRoot + "html/assets/json/termDates.json"))
-                    for x in termDates: 
-                        termStart = dt.date.fromisoformat(termDates[x]["start"])
-                        termEnd = dt.date.fromisoformat(termDates[x]["finish"])
+                    for TermData in termDates: 
+                        termStart = dt.date.fromisoformat(TermData["start"])
+                        termEnd = dt.date.fromisoformat(TermData["finish"])
                         if(termStart <= todaysdate.date() <= termEnd):
-                            Template = termDates[x]['Template']
+                            Template = TermData['Template']
                             TermDatesLoop(Template)
             
             
