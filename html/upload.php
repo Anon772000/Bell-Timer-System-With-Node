@@ -1,12 +1,13 @@
 <?php
 $target_dir = "/";
 $target_file = $target_dir.basename($_FILES["fileToUpload"]["name"]);
+$tmp_name = $_FILES["fileToUpload"]["tmp_name"];
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
 // Check if image file is a actual image or fake image
 
-if (is_dir($tmp_name = $_FILES['file']['tmp_name'])) {
+if (is_dir($tmp_name = $_FILES['fileToUpload']['tmp_name'])) {
   echo 'the temporary folder exists<br>';
 } else {
   echo 'the temp folder doesn\'t exist<br>';
@@ -29,7 +30,7 @@ if ($uploadOk == 0) {
   echo "Sorry, your file was not uploaded. Code:00E-005";
 // if everything is ok, try to upload file
 } else {
-  if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+  if (move_uploaded_file($tmp_name, $target_file)) {
     echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
     $arry2 = array( "name" => $_POST['name'],"dir" => escapeshellcmd($target_file));
     $arr1 = json_decode(file_get_contents('sounds.json'), true);
