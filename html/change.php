@@ -181,7 +181,7 @@ if (isset($arr1[$id]['bells'][$bellid]['weekends'])){
 
     <?php
 $selectkey = $arr1[$id]['bells'][$bellid]['belltype'];
-$arr5 = json_decode(file_get_contents('sounds.json'), true);
+$arr5 = json_decode(file_get_contents('assets/json/sounds.json'), true);
 if($selectkey != '0'){
 echo("<option selected value ='".$selectkey."'>".$arr5[$selectkey]['name']."</option>");
 }else{

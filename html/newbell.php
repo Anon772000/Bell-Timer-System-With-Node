@@ -137,7 +137,7 @@ $id = $_GET['id'];
 
     <option selected value ='0'>Default Bell</option>
 <?php
-$arr1 = json_decode(file_get_contents('sounds.json'), true);
+$arr1 = json_decode(file_get_contents('assets/json/sounds.json'), true);
     foreach ($arr1 as $key => $value){
     echo("<option value ='".$key."'>".$value['name']."</option>");
 }
