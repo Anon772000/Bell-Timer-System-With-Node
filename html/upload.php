@@ -1,5 +1,5 @@
 <?php
-$target_dir = "C://";
+$target_dir = "/var/www/html/assets/tones/";
 $target_file = $target_dir.basename($_FILES["fileToUpload"]["name"]);
 $tmp_name = $_FILES["fileToUpload"]["tmp_name"];
 $uploadOk = 1;
