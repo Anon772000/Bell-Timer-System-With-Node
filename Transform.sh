@@ -1,1 +1,1 @@
-ffmpeg -i $1 -ac 2 $2
+sudo ffmpeg -i $1 -ac 2 $2

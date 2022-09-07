@@ -1,5 +1,5 @@
 <?php
-$target_dir = "/assets/tones/";
+$target_dir = "/var/www/html/assets/tones/";
 $target_file = $target_dir.basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -22,7 +22,7 @@ if($imageFileType != "mp3" && $imageFileType != "wav" && $imageFileType != "ogg"
 
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
-  echo "Sorry, your file was not uploaded.";
+  echo "Sorry, your file was not uploaded. Code:00E-005";
 // if everything is ok, try to upload file
 } else {
   if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
@@ -31,11 +31,11 @@ if ($uploadOk == 0) {
     $arr1 = json_decode(file_get_contents('sounds.json'), true);
     $id = uniqid();
     $arr1[$id] = $arry2;
-    exec("sh ../Transform.sh "+$target_file+" "+$target_file+".m4a");
+    exec("sudo sh ../Transform.sh "+$target_file+" "+$target_file+".m4a");
     file_put_contents("sounds.json",json_encode($arr1));
     header("location: settings.php");
   } else {
-    echo "Sorry, there was an error uploading your file.";
+    echo "Sorry, there was an error uploading your file. Code:00F-12";
   }
 }
 ?>
