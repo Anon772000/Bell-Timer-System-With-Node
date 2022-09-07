@@ -12,6 +12,16 @@ $uuid = uniqid();
 $arr1[$uuid] = $arry2;
 
 }
+function cmp($a, $b){
+  $key = 'start';
+  if($a[$key] > $b[$key]){
+      return 1;
+  }else if($a[$key] < $b[$key]){
+      return -1;
+  }
+  return 0;
+}
+usort($arr1, "cmp");
 
 
 if(file_put_contents("assets/json/termDates.json",json_encode($arr1))){

@@ -19,6 +19,7 @@ $name = $arr1[$id]['name'];
 <div class="row">
   <div class="col-md-8 mr-auto ml-auto text-center">
   The Current time is <?=$time?> <br><br>
+  <a type='button' class="btn btn-primary" href="settings.php">Back</a>
     </div>
 </div>
 <br><br>

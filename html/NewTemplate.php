@@ -33,6 +33,7 @@ $name = "";
 <div class='row'>
   <div class="col-md-4 mr-auto ml-auto text-center">
 <form action = "NameChangeTempNewBell.php" method='get'>
+  <input type="hidden" name="id" id="id" value="<?=$id?>"/>
     <h4>Template Name</h4>
     <input class='form-control' aria-label='bell' id='name' name='name' value="<?=$name?>">
   

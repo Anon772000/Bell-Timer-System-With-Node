@@ -64,7 +64,7 @@ $id = $_GET['id'];
 <div class="col-md-12 mr-auto ml-auto text-center"><br><br>
 <button type="submit" class="btn btn-success">Save Edit</button>
 </form>
-<a class="btn btn-danger" href="deleteterm.php?id=<?=$id?>">DELETE</a>
+<a class="btn btn-danger" href="deletedrills.php?id=<?=$id?>">DELETE</a>
 </div>
 
 
