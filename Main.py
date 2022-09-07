@@ -218,7 +218,7 @@ def play(id,zone):
     else:
         data = json.load(open(webRoot + 'html/assets/json/sounds.json'))
         if zone == "ALL":
-            subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'"'], shell=True) 
+            subprocess.call(['ffplay -autoexit -nodisp "'+ webRoot+data[id]['dir']+'"'], shell=True) 
             time.sleep(60)
         elif zone == "1-2":
             if globalSettings["Zones"]["One"] & globalSettings["Zones"]["Two"]== True :
