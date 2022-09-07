@@ -1,5 +1,5 @@
 <?php
-$target_dir = "var/www/html/assets/tones/";
+$target_dir = "/var/www/html/assets/tones/";
 $target_file = $target_dir.basename($_FILES["fileToUpload"]["name"]);
 $tmp_name = $_FILES["fileToUpload"]["tmp_name"];
 $uploadOk = 1;
@@ -36,7 +36,7 @@ if ($uploadOk == 0) {
     $arr1 = json_decode(file_get_contents('assets/json/sounds.json'), true);
     $id = uniqid();
     $arr1[$id] = $arry2;
-    exec("sudo sh ../Transform.sh "+$target_file+" "+$target_file+".m4a");
+    //exec("sudo sh ../Transform.sh "+$target_file+" "+$target_file+".m4a");
     file_put_contents("assets/json/sounds.json",json_encode($arr1));
     header("location: settings.php");
   } else {
