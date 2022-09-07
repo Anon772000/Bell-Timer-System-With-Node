@@ -200,7 +200,7 @@ echo("<option selected value ='".$selectkey."'>Default Bell</option>");
     <label class="input-group-text" for="zone">Zone</label>
   </div>
   <select class="custom-select" id="zone" name="zone">
-    <option value="<?=$zone?> " selected><?=$zone?> </option>
+    <option value="<?=$zone?>" selected><?=$zone?> </option>
     <option value="ALL">All</option>
     <option value="1">1</option>
     <option value="2">2</option>

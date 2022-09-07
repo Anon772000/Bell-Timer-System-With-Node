@@ -11,7 +11,7 @@ import pytz
 logging.basicConfig(filename='BellTimerSystem.log', format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 logging.warning('| System started Logging Online')
 # Global Varibales
-webRoot = ""
+webRoot = "/var/www/"
 globalSettings = json.load(open(webRoot + "html/assets/json/global.json"))
 TIMEZONE = globalSettings['TimeZone']['Zone']
 everyday = ("monday", "tuesday", "wednesday","thursday", "friday", "saturday", "sunday")
@@ -218,7 +218,7 @@ def play(id,zone):
     else:
         data = json.load(open(webRoot + 'html/assets/json/sounds.json'))
         if zone == "ALL":
-            subprocess.call(['ffplay -autoexit -nodisp "'+ data[id]['dir']+'"'], shell=True) 
+            subprocess.call(['ffplay -autoexit -nodisp "'+ webRoot+data[id]['dir']+'"'], shell=True) 
             time.sleep(60)
         elif zone == "1-2":
             if globalSettings["Zones"]["One"] & globalSettings["Zones"]["Two"]== True :
