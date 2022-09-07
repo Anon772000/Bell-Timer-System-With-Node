@@ -1,5 +1,5 @@
 <?php
-$target_dir = "/";
+$target_dir = "C:/xampp/htdocs/Bell-Timer-System/html/";
 $target_file = $target_dir.basename($_FILES["fileToUpload"]["name"]);
 $tmp_name = $_FILES["fileToUpload"]["tmp_name"];
 $uploadOk = 1;
