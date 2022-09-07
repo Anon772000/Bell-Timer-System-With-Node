@@ -6,7 +6,11 @@ $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
 // Check if image file is a actual image or fake image
 
-
+if (is_dir($tmp_name = $_FILES['file']['tmp_name'])) {
+  echo 'the temporary folder exists<br>';
+} else {
+  echo 'the temp folder doesn\'t exist<br>';
+}
 
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 50000000) {
