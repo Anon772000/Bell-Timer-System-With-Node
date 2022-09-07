@@ -33,9 +33,11 @@ if ($uploadOk == 0) {
     $arr1 = json_decode(file_get_contents('assets/json/sounds.json'), true);
     $id = uniqid();
     $arr1[$id] = $arry2;
-    exec("sh Transform.sh "+$target_file+" "+$target_file+".m4a");
-    file_put_contents("assets/json/sounds.json",json_encode($arr1));
-    header("location: settings.php");
+    if(exec("sh Transform.sh "+$target_file+" "+$target_file+".m4a")){
+      file_put_contents("assets/json/sounds.json",json_encode($arr1));
+      header("location: settings.php");
+    }
+    
   } else {
     echo "Sorry, there was an error uploading your file. Code:00F-12";
     if (is_dir($tmp_name = $_FILES['fileToUpload']['tmp_name'])) {
