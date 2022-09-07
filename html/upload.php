@@ -1,5 +1,5 @@
 <?php
-$target_dir = "/var/www/html/assets/tones/";
+$target_dir = "C://";
 $target_file = $target_dir.basename($_FILES["fileToUpload"]["name"]);
 $tmp_name = $_FILES["fileToUpload"]["tmp_name"];
 $uploadOk = 1;
@@ -7,11 +7,7 @@ $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
 // Check if image file is a actual image or fake image
 
-if (is_dir($tmp_name = $_FILES['fileToUpload']['tmp_name'])) {
-  echo 'the temporary folder exists<br>';
-} else {
-  echo 'the temp folder doesn\'t exist<br>';
-}
+
 
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 50000000) {
@@ -41,6 +37,11 @@ if ($uploadOk == 0) {
     header("location: settings.php");
   } else {
     echo "Sorry, there was an error uploading your file. Code:00F-12";
+    if (is_dir($tmp_name = $_FILES['fileToUpload']['tmp_name'])) {
+      echo 'the temporary folder exists<br>';
+    } else {
+      echo 'the temp folder doesn\'t exist<br>';
+    }
   }
 }
 ?>

@@ -197,10 +197,10 @@ def TimeLoop():
                     logging.warning('| Error Loading termDates.json Skipping..')
                     print('| Error Loading termDates.json Skipping..')
                 else:
-                    termDates =json.load(open(webRoot + "html/assets/json/termDates.json"))
+                    termDates = json.load(open(webRoot + "html/assets/json/termDates.json"))
                     for x in termDates: 
-                        termStart = dt.date.fromisoformat(termDates[x]['start'])
-                        termEnd = dt.date.fromisoformat(termDates[x]['finish'])
+                        termStart = dt.date.fromisoformat(termDates[x]["start"])
+                        termEnd = dt.date.fromisoformat(termDates[x]["finish"])
                         if(termStart <= todaysdate.date() <= termEnd):
                             Template = termDates[x]['Template']
                             TermDatesLoop(Template)
