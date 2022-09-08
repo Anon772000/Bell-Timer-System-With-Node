@@ -103,6 +103,9 @@ if __name__ == "__main__":
                     logging.warning('| Cancel Button Pressed 2 Second')
                     time.sleep(1)
                     if Cancel.is_pressed:
+                        from urllib.request import urlopen
+                        url = "http://BellOne2.local/RingBell.php?id=false"
+                        urlopen(url)
                         print('Cancel Button Pressed 3 Second')
                         logging.warning('| Cancel Button Pressed 3 Second')
                         mixer.stop()
