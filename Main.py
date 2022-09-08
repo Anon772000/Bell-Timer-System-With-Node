@@ -28,7 +28,7 @@ weekend = ( "saturday", "sunday")
 def URL(url):
     response = urlopen(url)
     return response.read()
-    
+
 def SpecialDayLoop():
     todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
     thetime = [todaysdate.strftime("%H"), todaysdate.strftime("%M")]
@@ -163,7 +163,7 @@ def TimeLoop():
             currentTIme = (todaysdate.strftime("%H") + ":" +todaysdate.strftime("%M"))
             system('clear')
             print("System Time :  " + currentTIme)
-            globalSettings = json.load(URL("http://BellOne1.local/assets/json/global.json"))
+            globalSettings = json.load( webRoot + "html/assets/json/global.json")
             if globalSettings['EVAC']['EVAC'] == True:
                 TimeLoop()
             else:
