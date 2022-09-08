@@ -1,6 +1,7 @@
 <?php
-if(exec("sudo python /var/www/html/RingBell.py")){
-    header('location: index.php');
-}
-header('location: index.php');
+$type = $_GET['id'];
+if(exec("sudo python /etc/Bell-Timer-System/Tones.py "+$type)){
+    print("hello");
+};
+
 ?>

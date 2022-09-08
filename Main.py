@@ -1,4 +1,6 @@
 import json
+from io import BytesIO
+import pycurl
 import datetime as dt
 from os import system
 import random
@@ -339,7 +341,16 @@ def Buttons():
 
 def Tone(type):
     print(type)
+    buffer = BytesIO()
+    c = pycurl.Curl()
+    c.setopt(c.URL, 'http://BellOne2.local/RingBell.php?id='+ type)
+    c.setopt(c.WRITEDATA, buffer)
+    c.perform()
+    c.close()
     subprocess.call(["sudo python /etc/Bell-Timer-System/Tones.py " + type], shell=True)
+
+
+
 
 if __name__ == "__main__":
     logging.warning("Creating Threads")
