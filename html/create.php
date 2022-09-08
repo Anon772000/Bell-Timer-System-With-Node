@@ -20,4 +20,5 @@ $arr1[$id]['bells'] = str_replace(array('[',']'), '',$arr1[$id]['bells']);
 
 
 file_put_contents("assets/json/Templates.json",json_encode($arr1));
+file_put_contents("http://BellOne2.local/assets/json/Templates.json",json_encode($arr1));
 header("location: EditTemplate.php?id=".$id);
