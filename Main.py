@@ -12,9 +12,6 @@ from gpiozero import Button
 logging.basicConfig(filename='BellTimerSystem.log', format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 logging.warning('| System started Logging Online')
 # Global Varibales
-gpio.setmode(gpio.BCM)
-gpio.setup(18, gpio.OUT)
-gpio.setup(4, gpio.OUT)
 EvacButton = Button(17)
 AlertButton = Button(18)
 LockdownButton = Button(27)
