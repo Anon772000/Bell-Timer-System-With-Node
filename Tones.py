@@ -94,35 +94,35 @@ if __name__ == "__main__":
             logging.warning('| Web Button Pressed')
             main(sys.argv[1])
     while True:
-        if Cancel.is_pressed:
-            print('Cancel Button Pressed')
-            logging.warning('| Cancel Button Pressed')
-            time.sleep(1)
-            if Cancel.is_pressed:
-                print('Cancel Button Pressed 1 Second')
-                logging.warning('| Cancel Button Pressed 1 Second')
-                time.sleep(1)
-                if Cancel.is_pressed:
-                    print('Cancel Button Pressed 2 Second')
-                    logging.warning('| Cancel Button Pressed 2 Second')
-                    time.sleep(1)
-                    if Cancel.is_pressed:
-                        from urllib.request import urlopen
-                        url = "http://BellOne2.local/RingBell.php?id=false"
-                        urlopen(url)
-                        print('Cancel Button Pressed 3 Second')
-                        logging.warning('| Cancel Button Pressed 3 Second')
-                        mixer.stop()
-                        subprocess.call(['sudo pkill -9 -f RingEmergenceyEvacuation.py'], shell=True)
-                        subprocess.call(['sudo pkill -9 -f RingLockdown.py'], shell=True)
-                        subprocess.call(['sudo pkill -9 -f RingLockout.py'], shell=True)
-                        subprocess.call(['sudo pkill -9 -f RingAlert.py'], shell=True)
-                        subprocess.call(['sudo pkill -9 -f Tones.py'], shell=True)
-                        print('All Tones Canceled')
-                        logging.warning('| All Tones Canceled')
-                        globalSettings = json.load(open("/var/www/html/assets/json/global.json"))
-                        break
-        else:
+        # if Cancel.is_pressed:
+        #     print('Cancel Button Pressed')
+        #     logging.warning('| Cancel Button Pressed')
+        #     time.sleep(1)
+        #     if Cancel.is_pressed:
+        #         print('Cancel Button Pressed 1 Second')
+        #         logging.warning('| Cancel Button Pressed 1 Second')
+        #         time.sleep(1)
+        #         if Cancel.is_pressed:
+        #             print('Cancel Button Pressed 2 Second')
+        #             logging.warning('| Cancel Button Pressed 2 Second')
+        #             time.sleep(1)
+        #             if Cancel.is_pressed:
+        #                 from urllib.request import urlopen
+        #                 url = "http://BellOne2.local/RingBell.php?id=false"
+        #                 urlopen(url)
+        #                 print('Cancel Button Pressed 3 Second')
+        #                 logging.warning('| Cancel Button Pressed 3 Second')
+        #                 mixer.stop()
+        #                 subprocess.call(['sudo pkill -9 -f RingEmergenceyEvacuation.py'], shell=True)
+        #                 subprocess.call(['sudo pkill -9 -f RingLockdown.py'], shell=True)
+        #                 subprocess.call(['sudo pkill -9 -f RingLockout.py'], shell=True)
+        #                 subprocess.call(['sudo pkill -9 -f RingAlert.py'], shell=True)
+        #                 subprocess.call(['sudo pkill -9 -f Tones.py'], shell=True)
+        #                 print('All Tones Canceled')
+        #                 logging.warning('| All Tones Canceled')
+        #                 globalSettings = json.load(open("/var/www/html/assets/json/global.json"))
+        #                 break
+        # else:
             globalSettings = json.load(open("/var/www/html/assets/json/global.json"))
             if globalSettings['EVAC']['EVAC'] == False:
                 from urllib.request import urlopen
