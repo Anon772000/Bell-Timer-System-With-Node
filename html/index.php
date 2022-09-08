@@ -6,10 +6,10 @@ ini_set('default_socket_timeout', 3);
 $url = "http://bellOne2.local/";
 $headers = @get_headers($url);
 if($headers && strpos( $headers[0], '200')) {
-    $status = "Node Online";
+    $status = "<span class='w3-tag w3-green'>Online</span>";
 }
 else {
-    $status = "Node Offline";
+    $status = "<span class='w3-tag w3-red'>Offline</span>";
 }
   
 
