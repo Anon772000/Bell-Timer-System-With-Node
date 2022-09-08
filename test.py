@@ -1,15 +1,11 @@
 from gpiozero import Button
-import RPi.GPIO as gpio
 import time
-gpio.setmode(gpio.BCM)
-gpio.setup(18, gpio.OUT)
-gpio.setup(4, gpio.OUT)
-EvacButton = Button(6)
-AlertButton = Button(7)
-LockdownButton = Button(8)
-LockoutButton = Button(9)
-BellButton = Button(10)
-Cancel = Button(5)
+EvacButton = Button(17)
+AlertButton = Button(18)
+LockdownButton = Button(27)
+LockoutButton = Button(22)
+BellButton = Button(23)
+Cancel = Button(15)
 while True:
         if EvacButton.is_pressed:
             print('Evac Button Pressed')
