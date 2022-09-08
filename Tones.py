@@ -70,6 +70,7 @@ def main(tone):
         subprocess.call(['sudo pkill -9 -f RingAlert.py'], shell=True)
         BellSound.play()
         time.sleep(5)
+        subprocess.call(['sudo pkill -9 -f Tones.py'], shell=True)
 
 if __name__ == "__main__":
     mixer.init(48000, -16, 2, 2048)
