@@ -3,6 +3,18 @@ include "assets/inc/header.inc.php";
 date_default_timezone_set('Australia/Sydney');
 $time =  date("H:i");
 
+$url = "http://bellOne2.local/";
+$headers = @get_headers($url);
+if($headers && strpos( $headers[0], '200')) {
+    $status = "Node Online";
+}
+else {
+    $status = "Node Offline";
+}
+  
+
+  
+?>
 
 
 
@@ -39,7 +51,9 @@ $time =  date("H:i");
     </div>
     <div class="row">
       <div class="col-md-6 mr-auto ml-auto text-center">
-        The Current time is <?=$time?> <br><br>
+        The Current time is <?=$time?> <br>
+        Node status <?=$status?>
+        <br>
       </div>
     </div>
     <br><br>
