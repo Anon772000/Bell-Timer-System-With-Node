@@ -176,9 +176,7 @@ def TimeLoop():
                            ":" + todaysdate.strftime("%M"))
             system('clear')
             print("System Time :  " + currentTIme)
-            from urllib.request import urlopen
-            url = "http://BellOne1.local/assets/json/global.json"
-            response = urlopen(url)
+
             data_json = json.loads(response.read())
             globalSettings = data_json
             if globalSettings['EVAC']['EVAC'] != False:
@@ -360,10 +358,9 @@ def Buttons():
 
 def Tone(type):
     print(type)
-    globalSettings = json.load(open(webRoot + "html/assets/json/global.json"))
-    globalSettings['EVAC']['EVAC'] = type
-    with open("sample.json", "w") as outfile:
-        json.dump(globalSettings, outfile)
+    from urllib.request import urlopen
+    url = "http://BellOne2.local/RingBell.php?id="+type
+    urlopen(url)
     subprocess.call(["sudo python /etc/Bell-Timer-System/Tones.py " + type], shell=True)
 
 
