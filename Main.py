@@ -1,3 +1,4 @@
+from urllib.request import urlopen
 import json
 import datetime as dt
 from os import system
@@ -24,11 +25,14 @@ TIMEZONE = globalSettings['TimeZone']['Zone']
 everyday = ("monday", "tuesday", "wednesday","thursday", "friday", "saturday", "sunday")
 week = ("monday", "tuesday", "wednesday","thursday", "friday")
 weekend = ( "saturday", "sunday")
-
+def URL(url):
+    response = urlopen(url)
+    return response.read()
+    
 def SpecialDayLoop():
     todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
     thetime = [todaysdate.strftime("%H"), todaysdate.strftime("%M")]
-    drillsDates =json.load(open("http://BellOne1.local/assets/json/drills.json"))
+    drillsDates =json.load(URL("http://BellOne1.local/assets/json/drills.json"))
     for x in drillsDates:
         if (todaysdate) == x["date"]:
             y = drillsDates[x]['time'].split(":")
@@ -43,7 +47,7 @@ def SpecialDayLoop():
 def DrillsDatesLoop():
     todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
     thetime = [todaysdate.strftime("%H"), todaysdate.strftime("%M")]
-    drillsDates =json.load(open("http://BellOne1.local/assets/json/drills.json"))
+    drillsDates =json.load(URL("http://BellOne1.local/assets/json/drills.json"))
     for x in drillsDates:
         if (todaysdate) == x["date"]:
             y = drillsDates[x]['time'].split(":")
@@ -57,7 +61,7 @@ def DrillsDatesLoop():
     
 def ExcludeDatesLoop():
     todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
-    excludeDates =json.load(open("http://BellOne1.local/assets/json/exclude.json"))
+    excludeDates =json.load(URL("http://BellOne1.local/assets/json/exclude.json"))
     for x in excludeDates:
         if (todaysdate) == x["date"]:
             time.sleep(60)
@@ -69,14 +73,14 @@ def TermDatesLoop(id):
     thetime = [todaysdate.strftime("%H"), todaysdate.strftime("%M")]
     nextBell = ['23','59']
     try:
-        json.load(open(webRoot + 'html/assets/json/Templates.json'))
+        json.load(URL(('http://BellOne1.local/assets/json/Templates.json')))
     except:
             logging.warning('| Critical Error Loading Templates.json Skipping..')
             logging.warning('| WARNING BELLS WILL NOT RING')
             print('| Critical Error Loading Templates.json')
             print('| WARNING BELLS WILL NOT RING')
     else:
-            Template = json.load(open(webRoot + 'html/assets/json/Templates.json'))
+            Template = json.load(URL(('http://BellOne1.local/assets/json/Templates.json')))
             length = len(Template[id]['bells'])
             q = 0
             while q < length:
@@ -159,52 +163,52 @@ def TimeLoop():
             currentTIme = (todaysdate.strftime("%H") + ":" +todaysdate.strftime("%M"))
             system('clear')
             print("System Time :  " + currentTIme)
-            globalSettings = json.load(open("http://BellOne1.local/assets/json/global.json"))
+            globalSettings = json.load(URL("http://BellOne1.local/assets/json/global.json"))
             if globalSettings['EVAC']['EVAC'] == True:
                 TimeLoop()
             else:
                 # Drills
                 try:
-                    json.load(open("http://BellOne1.local/assets/json/drills.json"))
+                    json.load(URL("http://BellOne1.local/assets/json/drills.json"))
                 except:
                     logging.warning('| Error Loading drills.json Skipping..')
                     print('| Error Loading drills.json Skipping..')
                 else:
-                    drillsDates =json.load(open("http://BellOne1.local/assets/json/drills.json"))
+                    drillsDates =json.load(URL("http://BellOne1.local/assets/json/drills.json"))
                     for x in drillsDates:
                         if drillsDates[x]["date"] == (dateToday):
                             DrillsDatesLoop()
                 # Special Days
                 try:
-                    json.load(open("http://BellOne1.local/assets/json/specialDay.json"))
+                    json.load(URL("http://BellOne1.local/assets/json/specialDay.json"))
                 except:
                     logging.warning('| Error Loading specialDay.json Skipping..')
                     print('| Error Loading specialDay.json Skipping..')
                 else:
-                    specialDay =json.load(open("http://BellOne1.local/assets/json/specialDay.json"))
+                    specialDay =json.load(URL("http://BellOne1.local/assets/json/specialDay.json"))
                     for x in specialDay:
                         if specialDay[x]["date"] == (dateToday):
                             SpecialDayLoop()
                 # Excluded Days
                 try:
-                    json.load(open("http://BellOne1.local/assets/json/exclude.json"))
+                    json.load(URL("http://BellOne1.local/assets/json/exclude.json"))
                     
                 except:
                     logging.warning('| Error Loading exclude.json Skipping..')
                     print('| Error Loading exclude.json Skipping..')
                 else:
-                    excludeDates =json.load(open("http://BellOne1.local/assets/json/exclude.json"))
+                    excludeDates =json.load(URL("http://BellOne1.local/assets/json/exclude.json"))
                     for x in excludeDates: 
                         if (dateToday) == excludeDates[x]["date"]:
                             ExcludeDatesLoop()
                  # Does today fall within a term
                 try:
-                    json.load(open("http://BellOne1.local/assets/json/termDates.json"))
+                    json.load(URL("http://BellOne1.local/assets/json/termDates.json"))
                 except:
                     logging.warning('| Error Loading termDates.json Skipping..')
                     print('| Error Loading termDates.json Skipping..')
                 else:
-                    termDates = json.load(open("http://BellOne1.local/assets/json/termDates.json"))
+                    termDates = json.load(URL("http://BellOne1.local/assets/json/termDates.json"))
                     for TermData in termDates: 
                         termStart = dt.date.fromisoformat(TermData["start"])
                         termEnd = dt.date.fromisoformat(TermData["finish"])
@@ -218,12 +222,12 @@ def play(id,zone):
     print("Ringing Bell")
     logging.warning('| Ringing Bell: '+id)
     try:
-        data = json.load(open(webRoot + 'html/assets/json/sounds.json'))
+        data = json.load(URL(('http://BellOne1.local/assets/json/sounds.json')))
     except:
         logging.warning('| Error Loading termDates.json Skipping..')
         print('| Error Loading termDates.json Skipping..')
     else:
-        data = json.load(open(webRoot + 'html/assets/json/sounds.json'))
+        data = json.load(URL(('http://BellOne1.local/assets/json/sounds.json')))
         if zone == "ALL":
             subprocess.call(['ffplay -autoexit -nodisp "'+ webRoot+data[id]['dir']+'"'], shell=True) 
             time.sleep(60)
