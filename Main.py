@@ -163,7 +163,7 @@ def TimeLoop():
             currentTIme = (todaysdate.strftime("%H") + ":" +todaysdate.strftime("%M"))
             system('clear')
             print("System Time :  " + currentTIme)
-            globalSettings = json.load( webRoot + "html/assets/json/global.json")
+            globalSettings = json.load(open( webRoot + "html/assets/json/global.json"))
             if globalSettings['EVAC']['EVAC'] == True:
                 TimeLoop()
             else:
