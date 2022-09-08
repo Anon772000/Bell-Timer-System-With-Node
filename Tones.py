@@ -71,6 +71,10 @@ def main(tone):
         subprocess.call(['sudo pkill -9 -f RingAlert.py'], shell=True)
         BellSound.play()
         time.sleep(5)
+        from urllib.request import urlopen
+        url = "http://BellOne2.local/RingBell.php?id=false"
+        urlopen(url)
+        globalSettings['EVAC']['EVAC'] = "false"
         subprocess.call(['sudo pkill -9 -f Tones.py'], shell=True)
 
 if __name__ == "__main__":
@@ -117,9 +121,6 @@ if __name__ == "__main__":
                         print('All Tones Canceled')
                         logging.warning('| All Tones Canceled')
                         globalSettings = json.load(open("/var/www/html/assets/json/global.json"))
-                        globalSettings['EVAC']['EVAC'] = "false"
-                        with open("/var/www/html/assets/json/global.json", "w") as outfile:
-                            json.dump(globalSettings, outfile)
                         break
         else:
             globalSettings = json.load(open("/var/www/html/assets/json/global.json"))
@@ -138,4 +139,7 @@ if __name__ == "__main__":
                 print('All Tones Canceled')
                 logging.warning('| All Tones Canceled')
                 globalSettings = json.load(open("/var/www/html/assets/json/global.json"))
+                globalSettings['EVAC']['EVAC'] = "false"
+                with open("/var/www/html/assets/json/global.json", "w") as outfile:
+                    json.dump(globalSettings, outfile)
                 break
