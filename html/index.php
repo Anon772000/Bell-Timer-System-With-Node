@@ -2,7 +2,7 @@
 include "assets/inc/header.inc.php";
 date_default_timezone_set('Australia/Sydney');
 $time =  date("H:i");
-
+ini_set('default_socket_timeout', 3);
 $url = "http://bellOne2.local/";
 $headers = @get_headers($url);
 if($headers && strpos( $headers[0], '200')) {
