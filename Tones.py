@@ -130,6 +130,10 @@ if __name__ == "__main__":
                 from urllib.request import urlopen
                 url = "http://BellOne2.local/RingBell.php?id=false"
                 urlopen(url)
+                globalSettings = json.load(open("/var/www/html/assets/json/global.json"))
+                globalSettings['EVAC']['EVAC'] = False
+                with open("/var/www/html/assets/json/global.json", "w") as outfile:
+                    json.dump(globalSettings, outfile)
                 print('Cancel Button Pressed 3 Second')
                 logging.warning('| Cancel Button Pressed 3 Second')
                 mixer.stop()
@@ -140,8 +144,5 @@ if __name__ == "__main__":
                 subprocess.call(['sudo pkill -9 -f Tones.py'], shell=True)
                 print('All Tones Canceled')
                 logging.warning('| All Tones Canceled')
-                globalSettings = json.load(open("/var/www/html/assets/json/global.json"))
-                globalSettings['EVAC']['EVAC'] = "false"
-                with open("/var/www/html/assets/json/global.json", "w") as outfile:
-                    json.dump(globalSettings, outfile)
+                
                 break
