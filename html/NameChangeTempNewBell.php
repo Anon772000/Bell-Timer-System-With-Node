@@ -14,6 +14,10 @@ $arr1[$id]['name'] = $name;
 
 
 file_put_contents("assets/json/Templates.json",json_encode($arr1));
-
-header("location: newbell.php?id=".$id);
+if ($_SERVER['HTTP_HOST'] == "bellone1.local"){
+    $send = http_build_query($_GET);
+    header("location: http://BellOne2.Local/NameChangeTempNewBell.php?".$send);
+}else{
+    header("location: http://BellOne1.Local/newbell.php?id=".$id);
+}
 

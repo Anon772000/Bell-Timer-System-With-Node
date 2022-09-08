@@ -6,7 +6,13 @@ $arr1 = json_decode(file_get_contents('assets/json/termDates.json'), true);
 
 unset($arr1[$id]);
 file_put_contents("assets/json/termDates.json",json_encode($arr1));
-header('location: BellTimings.php');
+if ($_SERVER['HTTP_HOST'] == "bellone1.local"){
+    $send = http_build_query($_GET);
+    header("location: http://BellOne2.Local/deleteterm.php?".$send);
+}else{
+    header("location: http://BellOne1.Local/BellTimings.php");
+}
+
 
 
 
