@@ -52,7 +52,7 @@ else {
     <div class="row">
       <div class="col-md-6 mr-auto ml-auto text-center">
         The Current time is <?=$time?> <br>
-        Node status <?=$status?>
+        <p>Node status: <?=$status?></p>
         <br>
       </div>
     </div>
