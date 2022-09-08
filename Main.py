@@ -1,6 +1,4 @@
 import json
-from io import BytesIO
-import pycurl
 import datetime as dt
 from os import system
 import random
