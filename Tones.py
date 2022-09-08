@@ -118,25 +118,21 @@ if __name__ == "__main__":
                         with open("/var/www/html/assets/json/global.json", "w") as outfile:
                             json.dump(globalSettings, outfile)
                         break
-            else:
+        else:
+            globalSettings = json.load(open("/var/www/html/assets/json/global.json"))
+            if globalSettings['EVAC']['EVAC'] == False:
                 from urllib.request import urlopen
-                url = "http://BellOne1.local/assets/json/global.json"
-                response = urlopen(url)
-                data_json = json.loads(response.read())
-                globalSettings = data_json
-                if globalSettings['EVAC']['EVAC'] == False:
-                    print('Cancel Button Pressed 3 Second')
-                    logging.warning('| Cancel Button Pressed 3 Second')
-                    mixer.stop()
-                    subprocess.call(['sudo pkill -9 -f RingEmergenceyEvacuation.py'], shell=True)
-                    subprocess.call(['sudo pkill -9 -f RingLockdown.py'], shell=True)
-                    subprocess.call(['sudo pkill -9 -f RingLockout.py'], shell=True)
-                    subprocess.call(['sudo pkill -9 -f RingAlert.py'], shell=True)
-                    subprocess.call(['sudo pkill -9 -f Tones.py'], shell=True)
-                    print('All Tones Canceled')
-                    logging.warning('| All Tones Canceled')
-                    globalSettings = json.load(open("/var/www/html/assets/json/global.json"))
-                    globalSettings['EVAC']['EVAC'] = "false"
-                    with open("/var/www/html/assets/json/global.json", "w") as outfile:
-                        json.dump(globalSettings, outfile)
-                    break
+                url = "http://BellOne2.local/RingBell.php?id=false"
+                urlopen(url)
+                print('Cancel Button Pressed 3 Second')
+                logging.warning('| Cancel Button Pressed 3 Second')
+                mixer.stop()
+                subprocess.call(['sudo pkill -9 -f RingEmergenceyEvacuation.py'], shell=True)
+                subprocess.call(['sudo pkill -9 -f RingLockdown.py'], shell=True)
+                subprocess.call(['sudo pkill -9 -f RingLockout.py'], shell=True)
+                subprocess.call(['sudo pkill -9 -f RingAlert.py'], shell=True)
+                subprocess.call(['sudo pkill -9 -f Tones.py'], shell=True)
+                print('All Tones Canceled')
+                logging.warning('| All Tones Canceled')
+                globalSettings = json.load(open("/var/www/html/assets/json/global.json"))
+                break
