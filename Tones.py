@@ -75,6 +75,8 @@ def main(tone):
         url = "http://BellOne2.local/RingBell.php?id=false"
         urlopen(url)
         globalSettings['EVAC']['EVAC'] = "false"
+        with open("/var/www/html/assets/json/global.json", "w") as outfile:
+            json.dump(globalSettings, outfile)
         subprocess.call(['sudo pkill -9 -f Tones.py'], shell=True)
 
 if __name__ == "__main__":
