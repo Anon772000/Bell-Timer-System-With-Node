@@ -9,19 +9,18 @@ import logging
 from tokenize import Special
 import pytz
 from gpiozero import Button
-import RPi.GPIO as gpio
 logging.basicConfig(filename='BellTimerSystem.log', format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 logging.warning('| System started Logging Online')
 # Global Varibales
 gpio.setmode(gpio.BCM)
 gpio.setup(18, gpio.OUT)
 gpio.setup(4, gpio.OUT)
-EvacButton = Button(6)
-AlertButton = Button(7)
-LockdownButton = Button(8)
-LockoutButton = Button(9)
-BellButton = Button(10)
-Cancel = Button(5)
+EvacButton = Button(17)
+AlertButton = Button(18)
+LockdownButton = Button(27)
+LockoutButton = Button(22)
+BellButton = Button(23)
+Cancel = Button(15)
 webRoot = "/var/www/"
 globalSettings = json.load(open(webRoot + "html/assets/json/global.json"))
 TIMEZONE = globalSettings['TimeZone']['Zone']

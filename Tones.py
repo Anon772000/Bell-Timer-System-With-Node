@@ -7,12 +7,12 @@ import logging
 import time
 logging.basicConfig(filename='Tones.log',format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 logging.warning('| System started Button Module Online')
-EvacButton = Button(6)
-AlertButton = Button(7)
-LockdownButton = Button(8)
-LockoutButton = Button(9)
-BellButton = Button(10)
-Cancel = Button(5)
+EvacButton = Button(17)
+AlertButton = Button(18)
+LockdownButton = Button(27)
+LockoutButton = Button(22)
+BellButton = Button(23)
+Cancel = Button(15)
 def main(tone):
     if tone == 'evac':
         print('Evac Play')
