@@ -11,7 +11,8 @@ import logging
 from tokenize import Special
 import pytz
 from gpiozero import Button
-logging.basicConfig(filename='BellTimerSystem.log', format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+logging.basicConfig(filename='BellTimerSystem.log',
+                    format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 logging.warning('| System started Logging Online')
 # Global Varibales
 EvacButton = Button(17)
@@ -23,62 +24,69 @@ Cancel = Button(15)
 webRoot = "/var/www/"
 globalSettings = json.load(open(webRoot + "html/assets/json/global.json"))
 TIMEZONE = globalSettings['TimeZone']['Zone']
-everyday = ("monday", "tuesday", "wednesday","thursday", "friday", "saturday", "sunday")
-week = ("monday", "tuesday", "wednesday","thursday", "friday")
-weekend = ( "saturday", "sunday")
+everyday = ("monday", "tuesday", "wednesday",
+            "thursday", "friday", "saturday", "sunday")
+week = ("monday", "tuesday", "wednesday", "thursday", "friday")
+weekend = ("saturday", "sunday")
+
 
 def SpecialDayLoop():
     todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
     thetime = [todaysdate.strftime("%H"), todaysdate.strftime("%M")]
-    drillsDates =json.load(open(webRoot + "html/assets/json/drills.json"))
+    drillsDates = json.load(open(webRoot + "html/assets/json/drills.json"))
     for x in drillsDates:
         if (todaysdate) == x["date"]:
             y = drillsDates[x]['time'].split(":")
-            if(y == thetime):
+            if (y == thetime):
                 DrillType = drillsDates[x]['type']
                 Bellsys = threading.Thread(target=Tone, args=(DrillType,))
                 Bellsys.start()
-                Bellsys.join() 
+                Bellsys.join()
                 time.sleep(60)
                 continue
+
 
 def DrillsDatesLoop():
     todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
     thetime = [todaysdate.strftime("%H"), todaysdate.strftime("%M")]
-    drillsDates =json.load(open(webRoot + "html/assets/json/drills.json"))
+    drillsDates = json.load(open(webRoot + "html/assets/json/drills.json"))
     for x in drillsDates:
         if (todaysdate) == x["date"]:
             y = drillsDates[x]['time'].split(":")
-            if(y == thetime):
+            if (y == thetime):
                 DrillType = drillsDates[x]['type']
                 Bellsys = threading.Thread(target=Tone, args=(DrillType,))
                 Bellsys.start()
-                Bellsys.join() 
+                Bellsys.join()
                 time.sleep(60)
                 continue
-    
+
+
 def ExcludeDatesLoop():
     todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
-    excludeDates =json.load(open(webRoot + "html/assets/json/exclude.json"))
+    excludeDates = json.load(open(webRoot + "html/assets/json/exclude.json"))
     for x in excludeDates:
         if (todaysdate) == x["date"]:
             time.sleep(60)
             continue
 
+
 def TermDatesLoop(id):
     TIMEZONE = globalSettings['TimeZone']['Zone']
     todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
     thetime = [todaysdate.strftime("%H"), todaysdate.strftime("%M")]
-    nextBell = ['23','59']
+    nextBell = ['23', '59']
     try:
         json.load(open(webRoot + 'html/assets/json/Templates.json'))
     except:
-            logging.warning('| Critical Error Loading Templates.json Skipping..')
+            logging.warning(
+                '| Critical Error Loading Templates.json Skipping..')
             logging.warning('| WARNING BELLS WILL NOT RING')
             print('| Critical Error Loading Templates.json')
             print('| WARNING BELLS WILL NOT RING')
     else:
-            Template = json.load(open(webRoot + 'html/assets/json/Templates.json'))
+            Template = json.load(
+                open(webRoot + 'html/assets/json/Templates.json'))
             length = len(Template[id]['bells'])
             q = 0
             while q < length:
@@ -100,15 +108,17 @@ def TermDatesLoop(id):
                                 try:
                                     belltype = Template[id]['bells'][q]['belltype']
                                 except KeyError:
-                                    logging.warning('| Bell Tryed to ring But Belltype Not Selected')
+                                    logging.warning(
+                                        '| Bell Tryed to ring But Belltype Not Selected')
                                 else:
                                     belltype = Template[id]['bells'][q]['belltype']
-                                    bell = threading.Thread(target=play, args=(belltype,(Template[id]['bells'][q]['zone'])))
+                                    bell = threading.Thread(target=play, args=(
+                                        belltype, (Template[id]['bells'][q]['zone'])))
                                     bell.start()
                                     time.sleep(60)
                                     q = q + 1
                                     return
-                                    
+
                     for DayOfTheWeek in week:
                         try:
                             Template[id]['bells'][q]['weekdays']
@@ -119,12 +129,14 @@ def TermDatesLoop(id):
                                 try:
                                     belltype = Template[id]['bells'][q]['belltype']
                                 except KeyError:
-                                    logging.warning('| Bell Tryed to ring But Belltype Not Selected')
+                                    logging.warning(
+                                        '| Bell Tryed to ring But Belltype Not Selected')
                                 else:
                                     belltype = Template[id]['bells'][q]['belltype']
-                                    bell = threading.Thread(target=play, args=(belltype,(Template[id]['bells'][q]['zone'])))
+                                    bell = threading.Thread(target=play, args=(
+                                        belltype, (Template[id]['bells'][q]['zone'])))
                                     bell.start()
-                                    time.sleep(60)                                   
+                                    time.sleep(60)
                                     q = q + 1
                                     return
                     for DayOfTheWeek in weekend:
@@ -137,33 +149,42 @@ def TermDatesLoop(id):
                                 try:
                                     belltype = Template[id]['bells'][q]['belltype']
                                 except KeyError:
-                                    logging.warning('| Bell Tryed to ring But Belltype Not Selected')
+                                    logging.warning(
+                                        '| Bell Tryed to ring But Belltype Not Selected')
                                 else:
                                     belltype = Template[id]['bells'][q]['belltype']
-                                    bell = threading.Thread(target=play, args=(belltype,(Template[id]['bells'][q]['zone'])))
+                                    bell = threading.Thread(target=play, args=(
+                                        belltype, (Template[id]['bells'][q]['zone'])))
                                     bell.start()
-                                    time.sleep(60)                                   
+                                    time.sleep(60)
                                     q = q + 1
                                     return
                 else:
                     if thetime < x < nextBell:
-                        nextBell = x               
+                        nextBell = x
                     q = q + 1
-            if nextBell != ['23','59']:
-                print("next bell is at " + nextBell[0] +":"+ nextBell[1])        
+            if nextBell != ['23', '59']:
+                print("next bell is at " + nextBell[0] + ":" + nextBell[1])
+
 
 def TimeLoop():
     while True:
-            #Grabs real Time
+            # Grabs real Time
             todaysdate = dt.datetime.now(pytz.timezone(TIMEZONE))
-            dateToday = (todaysdate.strftime("%YYYY") + "-" + todaysdate.strftime("%MM") + "-" + todaysdate.strftime("%DD"))
-            #Creates current hour and min
-            currentTIme = (todaysdate.strftime("%H") + ":" +todaysdate.strftime("%M"))
+            dateToday = (todaysdate.strftime(
+                "%YYYY") + "-" + todaysdate.strftime("%MM") + "-" + todaysdate.strftime("%DD"))
+            # Creates current hour and min
+            currentTIme = (todaysdate.strftime("%H") +
+                           ":" + todaysdate.strftime("%M"))
             system('clear')
             print("System Time :  " + currentTIme)
-            globalSettings = json.load(open(webRoot + "html/assets/json/global.json"))
-            if globalSettings['EVAC']['EVAC'] == True:
-                TimeLoop()
+            from urllib.request import urlopen
+            url = "http://BellOne1.local/assets/json/global.json"
+            response = urlopen(url)
+            data_json = json.loads(response.read())
+            globalSettings = data_json
+            if globalSettings['EVAC']['EVAC'] != False:
+                Tone(globalSettings['EVAC']['EVAC'])
             else:
                 # Drills
                 try:
@@ -341,12 +362,10 @@ def Buttons():
 
 def Tone(type):
     print(type)
-    buffer = BytesIO()
-    c = pycurl.Curl()
-    c.setopt(c.URL, 'http://BellOne2.local/RingBell.php?id='+ type)
-    c.setopt(c.WRITEDATA, buffer)
-    c.perform()
-    c.close()
+    globalSettings = json.load(open(webRoot + "html/assets/json/global.json"))
+    globalSettings['EVAC']['EVAC'] = type
+    with open("sample.json", "w") as outfile:
+        json.dump(globalSettings, outfile)
     subprocess.call(["sudo python /etc/Bell-Timer-System/Tones.py " + type], shell=True)
 
 
