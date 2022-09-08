@@ -20,5 +20,9 @@ $arr1[$id]['bells'] = str_replace(array('[',']'), '',$arr1[$id]['bells']);
 
 
 file_put_contents("assets/json/Templates.json",json_encode($arr1));
-file_put_contents("http://BellOne2.local/assets/json/Templates.json",json_encode($arr1));
-header("location: EditTemplate.php?id=".$id);
+if ($_SERVER['HTTP_HOST'] == "BellOne1.local"){
+    $send = http_build_query($_GET);
+    header("location: http://BellOne2.Local/create.php?".$send);
+}else{
+    header("location: http://BellOne1.Local/EditTemplate.php?id=".$id);
+}
